@@ -1,0 +1,79 @@
+type: custom:bubble-card
+entity: input_number.zone1_min
+card_type: button
+button_type: slider
+name: Hinten links
+icon: mdi:sprinkler-variant
+min_value: 1
+max_value: 59
+step: 1
+scrolling_effect: false
+slider_fill_orientation: left
+slider_value_position: right
+tap_action:
+  action: none
+sub_button:
+  main:
+    - entity: binary_sensor.irrigation_unlimited_c2_z1
+      attribute: percent_complete
+      show_attribute: true
+      show_icon: false
+      show_last_changed: false
+      show_last_updated: false
+      state_background: true
+      show_background: true
+    - entity: binary_sensor.irrigation_unlimited_c2_z1
+      attribute: percent_complete
+      tap_action:
+        action: perform-action
+        perform_action: irrigation_unlimited.toggle
+        target: {}
+        data:
+          entity_id: binary_sensor.irrigation_unlimited_c2_z1
+    - entity: input_number.zone1_min
+      show_attribute: false
+      tap_action:
+        action: none
+      show_state: true
+      show_last_changed: false
+      show_last_updated: false
+      show_icon: false
+      state_background: false
+      show_background: true
+      show_name: true
+      name: Dauer
+    - entity: binary_sensor.irrigation_unlimited_c2_z1
+      show_name: false
+      show_last_changed: false
+      tap_action:
+        action: perform-action
+        target: {}
+        perform_action: irrigation_unlimited.cancel
+        data:
+          entity_id: binary_sensor.irrigation_unlimited_c2_z1
+      show_attribute: false
+      attribute: enabled
+      state_background: true
+      show_background: true
+      icon: mdi:stop
+      show_state: false
+    - entity: binary_sensor.irrigation_unlimited_c2_z1
+      icon: mdi:play
+      state_background: true
+      show_background: true
+      show_state: false
+      show_attribute: false
+      tap_action:
+        action: perform-action
+        perform_action: irrigation_unlimited.manual_run
+        target: {}
+        data:
+          entity_id: binary_sensor.irrigation_unlimited_c2_z1
+          time:
+            hours: 0
+            minutes: '{{ states(''input_number.zone1_min'') | int }}'
+            seconds: 0
+  bottom: []
+styles: |
+  .bubble-sub-button-4 { color: red !important; }
+  .bubble-sub-button-5 { color: lightgreen !important; }
