@@ -5,5 +5,11 @@ As I have an irrigation system in my garden based on shelly1-s I have designed s
 
 Code can be copied above.
 
+## Bubblecard Irrigation
+
+Basically it uses entities of [irrigation_unlimited](https://github.com/rgc99/irrigation_unlimited). Furthermore it calls service coming with this implementation like the percent-complete and so forth.
+An additional element is an input number containing the timer duration for manual runs.
+
+
 Cheers,
 hG
